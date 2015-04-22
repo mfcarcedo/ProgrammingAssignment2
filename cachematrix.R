@@ -1,11 +1,12 @@
 ## The following sequence of functions calculates the inverse of a matrix and catches this value so that 
 ## if the same matrix is invoked for inversion it will return the cached value rather than to compute it again.
 
-## This function creates a special "matrix" object that can cache its inverse. 
+## makeCacheMatrix function creates a special "matrix" object that can cache its inverse. It will return a list of the string of functions
+## used to run the makeCacheMatrix- 
 makeCacheMatrix <- function(x = matrix()) {
         z<-NULL
         y<-NULL
-        setm<- diag(y) 
+        setm<- diag(y) ## I use the diag function to make sure that the imput matrix is square
                 x<<-y
                 z<<-NULL
         
@@ -28,3 +29,6 @@ cacheSolve<-function(x=matrix(),...){
         x$setInv(z)
         z      ## Return a matrix that is the inverse of 'x'
 }
+## I tried the sequence in R with m1 <- matrix(c(1,2,3,4), nrow = 2, ncol = 2); m2<-makeCacheMatrix(m1); cacheSolve(m2) 
+## and I got the inverse of m2- When I again passed cacheSolve(m2), I got "getting cached data" and then the same inverse matrix
+## so it worked.
